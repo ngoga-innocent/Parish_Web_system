@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Announcements</h1>
+
+
+<div class="row">
+    {% for announcement in announcements %}
+    <div class="col-lg-3">
+       <div class="card mt-3" >
+        <div class="card-img-top"><img class="img-fluid" src="{{ announcement.thumb.url }}" alt=""></div>
+          <div class="card-body">
+          <h5 class="card-title text-center font-weight-bold">{{ announcement.title }}</h5>
+          <div>
+             <p class="card-text">{{ announcement.description }}</p>
+            <a class="text-decoration-none" href="/announcement/{{ announcement.id }}"><i class="text-success text-decoration-none">Read more</i></a>
+
+          </div>
+  
+           
+         </div>
+       </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

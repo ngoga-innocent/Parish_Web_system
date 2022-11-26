@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card justify-content-center align-items-center " >
+        <div class="card-img-top">
+            <img class="img-fluid" style="height: fit-content; width: fit-content;" src="{{ announcement.thumb.url }}" alt="">
+        </div>
+        <div class="card-body">
+            <div class="card-title"><h1 class="text-center">{{ announcement.title }}</h1></div>
+            <div class="card-text">{{ announcement.description }}</div>
+        </div>
+
+    </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock content  %}
