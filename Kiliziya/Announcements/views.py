@@ -6,7 +6,7 @@ from .createann import AnnouncementsForm
 
 
 def CreateAnnouncements(request):
-    form = AnnouncementsForm(request.POST or None)
+    form = AnnouncementsForm(request.POST, request.FILES)
     if form.is_valid():
         form.save()
 
