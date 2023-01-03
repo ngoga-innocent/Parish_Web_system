@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content  %}
+<div class="container" style="width: 60%;">
+  <form action="{% url 'ibyemezo' %}" method="post">
+    {% csrf_token %}
+            <input type="search" name="search" placeholder="shaka icyemezo" class="form-control me-2">
+            <button type="submit" class="btn btn-secondary me-2">Search</button>
+  </form>
+</div>
+<div class="container-fluid">
+    {% if searched %}
+       <h5>Your Result</h5>
+       {% for icyemezo in icyangombwa %}
+       <a href="./icyangombwa/{{ icyemezo.id }}" class="text-decoration-none text-dark">{{ icyemezo.amazina }}</a> <br>
+       {% endfor %}
+
+    {% endif %}
+</div>
+{% endblock %}

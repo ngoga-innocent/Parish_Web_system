@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+ <div class="container">
+    <div class="justify-content-center bg-dark text-white align-items-center" style="width: 60;">
+     <form  method="post" style="width: 80%; padding-left: 20%;" class="form-group">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Andika Missa" class=" btn btn-success form-control">
+     </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+.icyangombwa_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.icyangombwa{
+    padding: 2rem;
+   width: 400px;
+    height: 500px;
+    background-color: rgb(113, 39, 10);
+    border-radius: 4px;
+    box-shadow: 3px 4px 5px rgba(5, 4,0.3, 0.5);
+}
+.icyangombwa span{
+    /* font-size: 16px; */
+    color: aliceblue;
+    /* padding: 2rem; */
+    margin-top: 2rem;
+}
+.icyangombwa h3{
+    /* font-size: 16px; */
+    color: aliceblue;
+    /* padding: 2rem; */
+    margin-bottom: 2rem;
+}

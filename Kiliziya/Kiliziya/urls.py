@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Home.urls')),
     path('ubukarani/', include('Ubukarani.urls')),
-    path('announcement/', include('Announcements.urls'))
+    path('announcements/', include('Announcements.urls')),
+    path('Mass/', include('Mass.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
