@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-8 Main-content">
+            <div class="text-center text-weight-bold mt-3">
+                <h5 class="bage badge-secondary">{{ mass.date|date:'l' }} <span class="badge bage-primary">{{ mass.time }}</span></h5>
+                <span class="label label-info">Padiri {{ mass.padiri }}</span>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-6">
+                        <h6 class="text-center">Isomo rya Mbere</h6>
+                        <i>{{ mass.verse_1 }}</i>
+                        <p>{{ mass.isomo_1 }}</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-6">
+                        <h6 class="text-center">Isomo rya Kabiri</h6>
+                        <i>{{ mass.verse_2 }}</i>
+                        <p>{{ mass.isomo_2 }}</p>
+                    </div>
+                </div>
+                <div class="invanjiri">
+                    <h6 class="text-center">Invanjiri</h6>
+                    <i>{{ mass.ivanjiri_verse }}</i>
+                    <p>{{ mass.ivanjiri }}</p>
+                </div>
+                <div class="Inyigisho">
+                    <h6 class="text-center">Inyigisho</h6>
+                    <hr class="w-75">
+                    <i class="font-italic">{{ mass.summary }}</i>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-4 mt-3">
+            <h6 class="text-center">IBIKORWA BYA PARROISE</h6>
+            <div class="row mt-5">
+                        {% for event in events %}
+                        <div class="col-lg-4 col-md-4 col-4">
+                        <img src="{{ event.thumb.url }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-8">
+                        <p>{{ event.title }}</p>
+                        <p><a href="#">Read More</a></p>
+                    </div>
+                    {% endfor %}
+            </div>
+
+            <h6 class="text-center">AMATANGAZO YA PARROISE</h6>
+            <div class="row mt-5">
+                        {% for announcement in announcements|slice:'2' %}
+                        <div class="col-lg-4 col-md-4 col-4">
+                        <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-8">
+                        <p>{{ announcement.title }}</p>
+                        <p><a href="{% url 'announcements_detail' announcement.id %}">Read More</a></p>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

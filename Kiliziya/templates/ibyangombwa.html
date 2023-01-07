@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content  %}
-<div class="container" style="width: 60%;">
+<div class="container mt-4" style="width: 60%;">
   <form action="{% url 'ibyemezo' %}" method="post">
     {% csrf_token %}
             <input type="search" name="search" placeholder="shaka icyemezo" class="form-control me-2">
@@ -8,12 +8,42 @@
   </form>
 </div>
 <div class="container-fluid">
-    {% if searched %}
+  {% for message in messages %}
+  <h6 class="text-center alert alert-warning">{{ message }}</h6>
+  {% endfor %}
+  {% if searched %}
+  <table class="table w-60">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Amazina</th>
+      <th scope="col"></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for icyemezo in icyangombwa %}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ icyemezo.amazina }}</td>
+      <td><a href="./icyangombwa/{{ icyemezo.id }}" class="btn btn-danger">Gisabe</a></td>
+      
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+    <h5 class="text-center">
+      Andika izina ry'umwana uri gushakira ifishi
+      
+    </h5>
+    {% endif %}
+    <!-- {% if searched %}
        <h5>Your Result</h5>
        {% for icyemezo in icyangombwa %}
        <a href="./icyangombwa/{{ icyemezo.id }}" class="text-decoration-none text-dark">{{ icyemezo.amazina }}</a> <br>
        {% endfor %}
 
-    {% endif %}
+    {% endif %} -->
 </div>
 {% endblock %}

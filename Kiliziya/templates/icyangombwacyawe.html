@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="icyangombwa_box">
-   <div class="icyangombwa">
+<form action="" method="post" class="form-inline w-50" enctype="multipart/form-data">
+   {% csrf_token %}
+   <label for="">Amazina</label> 
+   <input type="text" value="{{ amazina }}" name="amazina" readonly class="form-control">
+   <label for="">icyangombwa cy'umubyeyi wa Batisimu</label>
+   <input type="file" name="batisimu" class="form-control">
+   <label for="">icyemezo cy'umuryango Remezo</label>
+   <input type="file" name="umuryangoremezo" class="form-control">
+   <input type="submit" value="Saba Icyemezo" class="btn btn-warning">
+</form>
+
+
+
+
+
+
+   <!-- <div class="icyangombwa">
       <h3>IFISHI YA BATISIMU</h3>
       <span><b>Amazina</b> : {{ icyemezo.amazina }}</span><br>
       <span> <b>Mama</b> {{ icyemezo.mama }}</span><br>
@@ -11,7 +27,7 @@
       <span><b>Itariki ya Batisimu</b> : {{ icyemezo.batisimu }}</span><br>
       <span><b>Itariki yo Guhabwa Ukaristiya</b> : {{ icyemezo.Ukaristiya }}</span><br>
       <span><b>Itariki yo Gukomezwa</b> : {{ icyemezo.Gukomezwa }}</span>
-   </div>
+   </div> -->
 </div>
      
 

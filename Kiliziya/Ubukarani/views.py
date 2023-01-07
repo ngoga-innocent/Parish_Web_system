@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .bapteme import RawKwiyandikisha
-from .models import Icyangombwa
-
+from .models import Icyangombwa, Ibyasabwe
+from django.contrib import messages
 
 # generating pdf files import
 from django.http import FileResponse
@@ -36,44 +36,61 @@ def Register(request):
 def icyemezo(request):
     if request.method == "POST":
         searched = request.POST['search']
-        icyangombwa = Icyangombwa.objects.filter(amazina__contains=searched)
-        context = {
-            'searched': searched,
-            'icyangombwa': icyangombwa
-        }
-        return render(request, 'ibyangombwa.html', context)
+        searchup = searched.capitalize()
+        icyangombwa = Icyangombwa.objects.filter(amazina__contains=searchup)
+        if icyangombwa:
+            context = {
+                'searched': searched,
+                'icyangombwa': icyangombwa
+            }
+            return render(request, 'ibyangombwa.html', context)
+        else:
+            messages.info(request, "Ifishi yawe ntiri muri system")
+            return render(request, 'ibyangombwa.html')
     else:
         return render(request, 'ibyangombwa.html')
 
 
 def icyemezo_detail(request, id):
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 14)
+    if request.method == "POST":
+        amazina = request.POST['amazina']
+        umuryangoremezo = request.FILES['umuryangoremezo']
+        batisimu = request.FILES['batisimu']
 
-    icyemezo = Icyangombwa.objects.get(id=id)
-    lines = []
-    lines.append(icyemezo.amazina)
-    lines.append(icyemezo.papa)
-    lines.append(icyemezo.mama)
-    lines.append(icyemezo.umubyeyi_wa_batisimu)
-    lines.append(icyemezo.parroise)
-    # lines.append(icyemezo.batisimu)
-    # lines.append(icyemezo.Ukaristiya)
-    # lines.append(icyemezo.Gukomezwa)
+        ibyasabwe = Ibyasabwe.objects.create(
+            amazina=amazina, umubyeyi=batisimu, umuryangoremezo=umuryangoremezo, status=1)
+        ibyasabwe.save()
+        return redirect('/ubukarani/icyemezo')
+    else:
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 14)
 
-    for line in lines:
-        textob.textLine(line)
+        icyemezo = Icyangombwa.objects.get(id=id)
+        amazina = icyemezo.amazina
+        lines = []
+        lines.append(icyemezo.amazina)
+        lines.append(icyemezo.papa)
+        lines.append(icyemezo.mama)
+        lines.append(icyemezo.umubyeyi_wa_batisimu)
+        lines.append(icyemezo.parroise)
+        # lines.append(icyemezo.batisimu)
+        # lines.append(icyemezo.Ukaristiya)
+        # lines.append(icyemezo.Gukomezwa)
 
-    c.drawText(textob)
-    c.showPage()
-    c.save()
-    buf.seek(0)
+        for line in lines:
+            textob.textLine(line)
 
-    # return FileResponse(buf, as_attachment=True, filename='icyangombwa.pdf')
-    context = {
-        'icyemezo': icyemezo
-    }
-    return render(request, 'icyangombwacyawe.html', context)
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buf.seek(0)
+
+        # return FileResponse(buf, as_attachment=True, filename='icyangombwa.pdf')
+        context = {
+            'icyemezo': icyemezo,
+            'amazina': amazina
+        }
+        return render(request, 'icyangombwacyawe.html', context)

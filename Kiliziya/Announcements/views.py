@@ -15,7 +15,7 @@ def CreateAnnouncements(request):
 
 def Announcement(request):
 
-    announcements = Announcements.objects.all()
+    announcements = Announcements.objects.all().order_by('-id').values()
     return render(request, 'announcements.html', {'announcements': announcements})
 
 

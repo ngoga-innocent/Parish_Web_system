@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    {% if user %}
+    
+    <h4 class="register-header text-center">Register</h4>
+    
+    <form action="{% url 'register' %}" method="post" class="register form-control">
+        {% csrf_token  %}
+        {% for message in messages %}
+    <h4 class="register-header">{{ message }}</h4>
+    {% endfor %}
+        <input type="text" name="first_name" placeholder="First name" value="{{ user.first_name }}" class="form-control">
+        <input type="text" name="last_name" placeholder="Last  name" value="{{ user.last_name }}" class="form-control">
+        <input type="text" name="username" readonly placeholder="Username" value="{{ user.username }}" class="form-control">
+        <input type="email" name="email" placeholder="Email " value="{{ user.email }}" class="form-control">
+        <input type="password" name="password1" placeholder="password" value="{{ user.password }}"  class="form-control">
+        <!-- <input type="hidden" name="password2" placeholder="Confirm password" class="form-control"> -->
+        <input type="checkbox" name="is_staff" value="{{ user.is_staff }}" class="form-control">
+        
+        <input type="submit" value="Register" class="form-control btn btn-primary">
+    </form>
+    {% else %}
+    <h4 class="register-header text-center">Register</h4>
+    
+    <form action="{% url 'register' %}" method="post" class="register form-control">
+        {% csrf_token  %}
+        {% for message in messages %}
+    <h4 class="register-header">{{ message }}</h4>
+    {% endfor %}
+        <input type="text" name="first_name" placeholder="First name" class="form-control">
+        <input type="text" name="last_name" placeholder="Last  name" class="form-control">
+        <input type="text" name="username" placeholder="Username" class="form-control">
+        <input type="email" name="email" placeholder="Email " class="form-control">
+        <input type="password" name="password1" placeholder="password" class="form-control">
+        <input type="password" name="password2" placeholder="Confirm password" class="form-control">
+        <input type="hidden" name="is_staff"  class="form-control">
+        
+        <input type="submit" value="Register" class="form-control btn btn-primary">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

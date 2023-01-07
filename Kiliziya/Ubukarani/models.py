@@ -16,3 +16,19 @@ class Icyangombwa(models.Model):
     batisimu_status = models.BooleanField(default=False)
     Ukaristiya_status = models.BooleanField(default=False)
     Gukomezwa_status = models.BooleanField(default=False)
+
+
+class Ibyasabwe(models.Model):
+
+    Status_choices = {
+        ('1', 'Pending'),
+        ('2', 'approved')
+    }
+    amazina = models.CharField(max_length=1000)
+    umubyeyi = models.ImageField(upload_to='pics')
+    umuryangoremezo = models.ImageField(upload_to='pics')
+    status = models.CharField(
+        max_length=20,
+        choices=Status_choices,
+        default='1'
+    )

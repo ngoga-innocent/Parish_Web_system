@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    
+    <h4 class="register-header text-center">Register</h4>
+    
+    <form action="{%url 'login' %}" method="post" class="register form-control">
+        {% csrf_token  %}
+        {% for message in messages %}
+    <h4 class="register-header">{{ message }}</h4>
+    {% endfor %}
+        
+        <input type="text" name="username" placeholder="Username" class="form-control">
+        
+        <input type="password" name="password" placeholder="password" class="form-control">
+        
+        <input type="submit" value="login" class="form-control btn btn-primary">
+    </form>
+</div>
+
+{% endblock  %}

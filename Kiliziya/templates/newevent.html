@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="title">
+        <h5>Add New Event</h5>
+    </div>
+    <div class="form py-4">
+       <form action="" method="POST" class="form-inline py-2 w-50" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="">Title</label>
+        <input type="text" name="title" class="form-control">
+        <label for="">description</label>
+        <textarea name="description"   class="form-control"></textarea>
+        <label for="">Date</label>
+        <input type="date" name="date" data-date-format="YYYY MMMM DD " class="form-control">
+        <label for="">Thumnail</label>
+        <input type="file" name="thumb" id="" class="form-control">
+        <input type="submit" value="Submit" class=" btn btn-primary form-control mt-3"/>
+
+       </form>
+    </div>
+</div>
+{% endblock %}

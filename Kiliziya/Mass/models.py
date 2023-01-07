@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Mass(models.Model):
-    time = models.CharField(max_length=7)
+    date = models.DateField(auto_now_add=False, null=True)
+    time = models.TimeField(auto_now=False, auto_now_add=False)
     place = models.CharField(max_length=50)
     padiri = models.CharField(max_length=50)
     verse_1 = models.CharField(max_length=100)

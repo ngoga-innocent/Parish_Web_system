@@ -2,8 +2,46 @@
 {% block content %}
 
 <div class="container">
-    
-    <div class="row">
+    <div class="text-center">
+        <h5>Gahunda ya Missa muri Parroise</h5>
+    </div>
+    <table class="table table-bordered mt-3">
+  <thead>
+    <tr>
+      <th scope="col">itariki</th>
+      <th scope="col">Umunsi</th>
+      <th scope="col">isaha</th>
+      <th scope="col">aho ibera</th>
+      <th scope="col">Padiri</th>
+      <th>{{ today }}</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for mass in obj %}
+    {% if mass.date == today %}
+    <tr class="bg-success">
+      <th scope="row">{{ mass.date }}</th>
+     <td>{{ mass.date|date:'l' }}</td>
+      <td>{{ mass.time }}</td>
+      <td>{{ mass.place }}</td>
+       <td>{{ mass.padiri }}</td>
+       <td><a class="text-white" href="{% url 'mass_detail' mass.id %}">Reba missa</a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <th scope="row">{{ mass.date }}</th>
+     <td>{{ mass.date|date:'l' }}</td>
+      <td>{{ mass.time }}</td>
+      <td>{{ mass.place }}</td>
+       <td>{{ mass.padiri }}</td>
+       <td><a href="{% url 'mass_detail' mass.id %}">Reba missa</a></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+    <!-- <div class="row">
         {% for mass in obj %}
         <div class="col-4">
             <div class="card">
@@ -16,13 +54,14 @@
         <div class="card-footer">
             <marquee behavior="loop" direction="left">Isomo 1:{{ mass.verse_1 }},Isome 2:{{ mass.verse_2 }},Ivanjiri:{{ mass.ivanjiri_verse }}</marquee>
             <div class="text-center">{{ mass.padiri }}</div>
+            <a href="{% url 'mass_detail' mass.id %}">read More</a>
         </div>
     </div>
    </div>
 
         </div>
         {% endfor %}
-    </div>
+    </div> -->
    
    
 </div>

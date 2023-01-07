@@ -2,11 +2,13 @@ from django import forms
 
 
 class MassForm(forms.Form):
-    time = forms.CharField(label='Igihe cya Missa', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Igihe cya Missa'}))
+    date = forms.DateField(label='Igihe cya Missa',  widget=forms.DateInput(format="%d/%m/%Y",
+                                                                            attrs={'class': 'form-control', 'type': 'date', 'min': 'date.now'}))
+    time = forms.TimeField(label='Igihe cya Missa', widget=forms.TimeInput(
+        attrs={'class': 'form-control', 'type': 'time'}))
     padiri = forms.CharField(label='Padri urasoma  Missa', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': ' Padri urasoma  Missa'}))
-    place = forms.CharField(label='Padri urasoma  Missa', widget=forms.TextInput(
+    place = forms.CharField(label='Padri Aho missa irabera', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': ' Aho Missa irabera'}))
     verse_1 = forms.CharField(label='Aho dusanga isomo rya mbere ', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': ' Aho dusanga isomo rya mbere'}))

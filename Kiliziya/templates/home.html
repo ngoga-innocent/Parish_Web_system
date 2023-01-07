@@ -1,89 +1,130 @@
-<!--Main Header-->
-
 {% extends 'base.html' %}
-<!-- {% load static %} -->
+{% load static %}
 {% block content %}
-<div class="container-fluid">
-  <div class="row mb-0">
-    <!--Column one-->
-    <div class="col-lg-7">
-      <div class="position-relative overflow-hidden">
-       <img class="img-fluid" src="{% static 'image/st.jpg' %}" alt="">
-       <div class="badge badge-primary bg-primary ">
-          <a class="text-white" href="">BUSINESS</a>
-        </div>
-      </div>  
+<!--Carousel Item-->
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item carousel-image active">
+      <img class="d-block w-100" style="height: 100%;" src="{%static 'image/kimihurura1.jpg' %}" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5> MARIYA UTABARA ABAKRISTU</h5>
+    <p>Udusabire</p>
+  </div>
     </div>
-    <!--column 2-->
-    <div class="col-5">
-      <div class="row">
-        <div class="col-lg-6">
-          <img class="img-fluid" src="{% static 'image/st.jpg '%}" alt="">
-        </div>
+    <div class="carousel-item carousel-image bg-img-1">
+      <img class="d-block w-100" style="height:100vh" src="{%static 'image/kimihurura.jpg' %}" alt="Second slide">
+     
+    </div>
+    
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!--End Carousell-->
+<!-- <header>
+  <div class="intro">
+    <img class="img-fluid w-100" style="height:80vh" src="{%static 'image/parish.jpg' %}"  alt="Parish Image">
+    <div class="head">
+      <h4 class="display-3 font-weight-bold">Parroise Cathedrale St Michel</h4>
+      <hr class="w-30">
 
-        <div class="col-lg-6">
-          <img class="img-fluid" src="{% static 'image/st.jpg '%}" alt="">
+    </div>
+  </div>
+</header> -->
+<section>
+  <div class="featured">
+    <!--Owl Carousel-->
+<div class="title">
+  <h4>Upcoming Events</h4>
+</div>
+<div class="owl-carousel owl-theme">
+  {% for announcement in announcents %}
+    <div class="item">
+      <div class="one ">
+        <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+        <div class="text w-75 h-25 p-4">
+          <p>{{ announcement.title }}</p>
+          
         </div>
       </div>
+      
     </div>
-  </div>
-
-  <!--Latest Post-->
-  <div class="mt-0 bg-primary pr-3 pl-3">
-    <h1 class="text-center">LATEST POST</h1>
-  </div>
+    {% endfor %}
 </div>
-<!--ANNOUNCEMENTS-->
-<div class="container-fluid">
-  <div class="row">
+<div class="button">
+  
+<button type="button" class="btn btn-primary btn-lg btn-block"><a href="{% url 'events' %}">More events</a></button>
+</div>
+
+
+<!--End Owl carousel -->
+  </div>
+  <div class="title">
+  <h4>Parish News and Announcements</h4>
+</div>
+  <!--Announcent -->
+  <div class="row container-fluid">
     <div class="col-8">
       <div class="row">
-        <div class="col-12">
-          <div class="section-title ">
-            <h4 class="m-0 text-uppercase font-weight-bold">Parish Announcements</h4>
-            <a href="/announcement" class="text-decoration-none text-secondary font-weight-medium">View All</a>
-          </div>
+        {% for announcement in announcents|slice:":4" %}
+        <div class="col-lg-6 col-md-6 col-6">
+          <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+          <p class="font-weight-bold" style="font-size: 17px;font-weight: bold;">{{ announcement.title }}</p>
+          <p>{{ announcement.description|slice:80 }}...</p>
+          <p><a href="announcements/{{ announcement.id }}">Read more</a></p>
         </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-        <div class="position-relative mb-3">
-          <img class="img-fluid w-100" src="{% static 'image/st.jpg'%}" style="object-fit: cover;">
-            <div class="bg-white border border-top-0 p-4">
-              <div class="mb-2">
-                <a class="badge badge-primary bg-dark text-uppercase font-weight-semi-bold p-2 mr-2"
-                   href="">Business</a>
-                      <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-              </div>
-                  <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-                    <p class="m-0">Dolor lorem eos dolor duo et eirmod sea. Dolor sit magna
-                              rebum clita rebum dolor stet amet justo</p>
-                          </div>
-                          <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
-                            <div class="d-flex align-items-center">
-                              <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">
-                                <small>John Doe</small>
-                              </div>
-                              <div class="d-flex align-items-center">
-                                <small class="ml-3"><i class="far fa-eye mr-2"></i>12345</small>
-                                <small class="ml-3"><i class="far fa-comment mr-2"></i>123</small>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                   </div>
-      
-      
-        <!--second Post -->
-                        
-
-      
+        {% endfor %}
+        
       </div>
-      <!--first part with sidebars-->
     </div>
-    <!--row for annoucents-->
+    <div class="col-4">
+      <div class="sidebar1 ">
+        <img src="{% static 'image/kimihurura.jpg' %}" class="img-fluid" alt="">
+        <p>Kimihurura parish</p>
+        <p>the city parish </p>
+      </div>
+      <div class="sidebar2">
+        <div class="row">
+          {% for announcement in announcents %}
+          <div class="col-lg-4 col-md-4 col-4">
+            <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 col-md-8 col-8">
+             <p>{{ announcement.title }}</p>
+             <p><a href="{% url 'announcements_detail' announcement.id %}">Read More</a></p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  <!--End Announcements-->
+</section>
 
-<!--end Main header-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
