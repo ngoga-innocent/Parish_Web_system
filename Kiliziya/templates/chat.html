@@ -1,0 +1,37 @@
+{% extends 'chat_dashboard.html' %}
+{% block content %}
+
+<h1>{{ room.slug }}</h1>
+<div class="message">
+    {% for message in messages %}
+    {% if message.sender == request.user.username %}
+    <div class="box_message">
+        <div class="message_id">
+        <span>{{ message.sender }}</span>
+        <h6>{{ message.data }}</h6>
+        <h6>{{ message.time }}</h6>
+    </div>
+    {% else %}
+    <div class="box_message1">
+        <div class="message_id">
+        <span>{{ message.sender }}</span>
+        <h6>{{ message.data }}</h6>
+        <h6>{{ message.time }}</h6>
+    </div>
+    {% endif %}   
+    </div>
+    {% endfor %}
+</div>
+
+<form action="" method="post">
+    
+    {% csrf_token %}
+    <div class="row p-2 form-message">
+    <input type="hidden" name="sender" value="{{ user.username }}">
+    <input type="hidden" name="receiver" value="{{ room.slug }}">
+    <input type="hidden" name="date">
+    <div class="col-8"><input class="w-100 chat" placeholder="Type your message" type="text" name="message"></div>
+    <div class="col-4"><input type="submit" class="btn btn-secondary chat-button " value="send"></div>
+    </div>
+</form>
+{% endblock %}

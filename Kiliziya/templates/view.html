@@ -1,0 +1,17 @@
+{% extends 'dashboard.html' %}
+{%  block content  %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h6 class="text-center">Icyemezo cy'umubyeyi wa Batisimu</h6>
+            <img src= '{{ doc.umubyeyi.url }}' alt="" style="height:300px" class="img-fluid">
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <h6 class="text-center">Icyemezo cy'umuryangoremezo</h6>
+            <img src='{{ doc.umuryangoremezo.url }}' alt="" style="height:300px" class="img-fluid">
+        </div>
+        <button class="btn btn-success"> <a href="{% url 'approve' doc.id %}">Approve</a> </button>
+    </div>
+    
+</div>
+{% endblock %}

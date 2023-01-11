@@ -3,8 +3,11 @@
 <div class="icyangombwa_box">
 <form action="" method="post" class="form-inline w-50" enctype="multipart/form-data">
    {% csrf_token %}
+   <input type="hidden" value="{{ id }}" name="id">
    <label for="">Amazina</label> 
-   <input type="text" value="{{ amazina }}" name="amazina" readonly class="form-control">
+   
+   <input type="text" value="{{ prenom }} " name="amazina" readonly class="form-control">
+   
    <label for="">icyangombwa cy'umubyeyi wa Batisimu</label>
    <input type="file" name="batisimu" class="form-control">
    <label for="">icyemezo cy'umuryango Remezo</label>

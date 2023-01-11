@@ -18,6 +18,7 @@
       <th scope="col">#</th>
       <th scope="col">Amazina</th>
       <th scope="col"></th>
+      <th scope="col"></th>
       
     </tr>
   </thead>
@@ -25,9 +26,14 @@
     {% for icyemezo in icyangombwa %}
     <tr>
       <th scope="row">1</th>
-      <td>{{ icyemezo.amazina }}</td>
+      <td>{{ icyemezo.prenom  }} {{ icyemezo.Nom }}</td>
+      {% if status %}
+      <td><a href="{% url 'download'  icyemezo.id %}" class="btn btn-danger">{{ status }}</a></td>
+      <!-- <td class="text-warning">{{ status }}</td> -->
+      {% else %}
       <td><a href="./icyangombwa/{{ icyemezo.id }}" class="btn btn-danger">Gisabe</a></td>
-      
+      <td class="text-warning">{{ status }}</td>
+      {% endif %}
     </tr>
     {% endfor %}
     </tbody>

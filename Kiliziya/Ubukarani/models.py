@@ -4,14 +4,18 @@ from django.db import models
 
 
 class Icyangombwa(models.Model):
-    amazina = models.CharField(max_length=200)
+    prenom = models.CharField(max_length=200)
+    Nom = models.CharField(max_length=200, null=True)
     papa = models.CharField(max_length=200)
     mama = models.CharField(max_length=200)
     umubyeyi_wa_batisimu = models.CharField(max_length=200)
     parroise = models.CharField(max_length=200)
-    itariki_yamavuko = models.DateField()
-    batisimu = models.DateField()
-    Ukaristiya = models.DateField()
+    province = models.CharField(max_length=200, null=True)
+    District = models.CharField(max_length=200, null=True)
+    Vicus = models.CharField(max_length=200, null=True)
+    itariki_yamavuko = models.DateField(null=True)
+    batisimu = models.DateField(null=True)
+    Ukaristiya = models.DateField(null=True)
     Gukomezwa = models.DateField()
     batisimu_status = models.BooleanField(default=False)
     Ukaristiya_status = models.BooleanField(default=False)
@@ -32,3 +36,4 @@ class Ibyasabwe(models.Model):
         choices=Status_choices,
         default='1'
     )
+    owner_id = models.IntegerField(null=True)

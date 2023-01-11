@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
-    {% if user %}
+    {% if user.is_authenticated %}
     
     <h4 class="register-header text-center">Register</h4>
     
@@ -26,8 +26,8 @@
     <form action="{% url 'register' %}" method="post" class="register form-control">
         {% csrf_token  %}
         {% for message in messages %}
-    <h4 class="register-header">{{ message }}</h4>
-    {% endfor %}
+            <h4 class="register-header">{{ message }}</h4>
+        {% endfor %}
         <input type="text" name="first_name" placeholder="First name" class="form-control">
         <input type="text" name="last_name" placeholder="Last  name" class="form-control">
         <input type="text" name="username" placeholder="Username" class="form-control">

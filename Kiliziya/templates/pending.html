@@ -1,0 +1,46 @@
+{% extends 'dashboard.html' %}
+{% block content  %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Amazina</th>
+      <th scope="col">Umubyeyi wa Batisimu</th>
+      <th scope="col">Umuryango remezo</th>
+      
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for pending_doc in pending_docs %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{ pending_doc.amazina }}</td>
+      <td><a href=""> <img src="{{ pending_doc.umubyeyi.url }}" alt="" style="height: 50px;width: 50px;"class="img-fluid"></a></td>
+      <td><a href=""><img src='{{ pending_doc.umuryangoremezo.url }}' style="height: 50px;width: 50px;" class="img-fluid"></a></td>
+      
+      <td>
+        <form action="" method="post">
+            <button class="btn btn-warning"><a href="view/{{ pending_doc.id }}">Review</a></button>
+        </form>
+        
+    </td>
+       <td>
+        <form action="approve/{{ pending_doc.id }}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-success" value="Approve">
+        </form>
+        
+    </td>
+    </tr>
+    {% endfor  %}
+    
+    </tbody>
+    </table>
+
+
+
+ 
+{% endblock %}

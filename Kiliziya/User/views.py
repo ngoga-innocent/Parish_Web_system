@@ -18,10 +18,13 @@ def Login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('/')
+            if user.is_staff:
+                return redirect('/staff')
+            else:
+                return redirect('/')
         else:
             messages.info(request, 'username or password is not correct')
-            return redirect('./login')
+            return redirect('login')
     else:
         return render(request, 'login.html')
 
@@ -47,6 +50,7 @@ def Register(request):
                 messages.info(request, 'Username already exists')
                 return redirect('.')
             else:
+
                 user = User.objects.create_user(
                     first_name=first_name, last_name=last_name, username=username, email=email, password=password1, is_staff=False)
                 messages.info(request, 'Succesfully registered')
@@ -67,3 +71,8 @@ def edit(request, myid):
         'user': usersel
     }
     return render(request, 'register.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')

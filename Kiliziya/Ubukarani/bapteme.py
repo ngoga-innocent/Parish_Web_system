@@ -34,8 +34,10 @@ class Ibisabwa(forms.ModelForm):
 
 
 class RawKwiyandikisha(forms.Form):
-    amazina = forms.CharField(label='Amazina', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Amazina'}))
+    prenom = forms.CharField(label='Izina rya Gikristu', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Izina rya Gikristu'}))
+    Nom = forms.CharField(label='Izina ryababyeyi', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'izina ryababyeyi'}))
     papa = forms.CharField(label='Amazina ya Papa', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Amazina ya papa'}))
     mama = forms.CharField(label='Amazina ya mama', widget=forms.TextInput(
@@ -44,6 +46,12 @@ class RawKwiyandikisha(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'Umubyeyi wa Batisimu'}))
     parroise = forms.CharField(label='Parroise', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Parroise'}))
+    Vicus = forms.CharField(label='Domicillium', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Domicillium;vicus'}))
+    province = forms.CharField(label='Intara', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Intara'}))
+    District = forms.CharField(label='Akarere', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Akarere'}))
     itariki_yamavuko = forms.DateTimeField(
         label='itariki ya mavuko', widget=forms.DateTimeInput(attrs={'class': 'form-group', 'type': 'date', 'min': '1900-01-01'}))
     batisimu = forms.DateTimeField(
