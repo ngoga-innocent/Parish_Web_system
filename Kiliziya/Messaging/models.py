@@ -5,11 +5,23 @@ from django.db import models
 
 class Room(models.Model):
     name = models.CharField(max_length=1000)
-    slug = models.CharField(max_length=1000, unique=True)
+    slug = models.CharField(max_length=1000)
+    staff = models.CharField(max_length=10000, null=True)
+    client = models.CharField(max_length=10000, null=True)
 
 
 class Messaging(models.Model):
-    sender = models.CharField(max_length=10000)
+    Status_choices = {
+        ('1', 'not read'),
+        ('2', 'read')
+    }
+    sender = models.CharField(max_length=10000, null=True)
     data = models.CharField(max_length=10000)
-    reciever = models.CharField(max_length=1000)
+    room = models.CharField(max_length=1000)
+    receiver = models.CharField(max_length=10000, null=True)
     time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=20,
+        choices=Status_choices,
+        default='1'
+    )

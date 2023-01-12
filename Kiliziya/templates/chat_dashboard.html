@@ -20,9 +20,31 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="">
-                    {% for allroom in allrooms %}
-                        <li class=""><a href="{% url 'chat_room' allroom.id %}" class="text-white">{{ allroom.slug }}</a></li>
+                        {{ pending.count }}
+                          
+                        {% for staff in staffs %}
+                        <li class=""><a href="{% url 'staffchek' staff.id %}" class="text-white">{{ staff.username }} 
+                          {% for pendin in pending %}
+                          {{ pendin.count }}
+                          {% endfor %}
+                          <span class="text-warning">- staff</span>
+                        </a>
+                      </li>
+                        {% endfor %}
+                        {% for new_message in new_messages %}
+                        {% if new_message.staff == request.user.username %}
+                        
+                           {% if forloop.first %}
+                            <li class=""><a href="{% url 'chat_room' new_message.id %}" class="text-white">{{ new_message.client }} {{ pending.count }}</a></li>
+                            {%endif %}
+                        {% else %}
+                          {% if forloop.first %}
+                            <li class=""><a href="{% url 'chat_room' new_message.id %}" class="text-white">{{ new_message.staff }}  {{ pending.count }}</a></li>
+                          {% endif %}
+                        {% endif %}
                     {% endfor %}
+
+                    <li class="text-center justify-content-center" style="margin-top: 50px;font-size: 25px;background-color: whitesmoke; width: 70%;border-radius: 10px;"><a class="text-warning text-center" href="{% url 'home' %}"> <span class="fa fa-home me-2" aria-hidden="true"></span>Ahabanza</a></li>
                 </ul>
             </div>
             </div>

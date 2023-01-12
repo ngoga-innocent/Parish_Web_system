@@ -1,7 +1,7 @@
 {% extends 'chat_dashboard.html' %}
 {% block content %}
 
-<h1>{{ room.slug }}</h1>
+
 <div class="message">
     {% for message in messages %}
     {% if message.sender == request.user.username %}
@@ -23,12 +23,17 @@
     {% endfor %}
 </div>
 
-<form action="" method="post">
+<form action="{% url 'chat_room' room.id %}" method="post">
     
     {% csrf_token %}
     <div class="row p-2 form-message">
     <input type="hidden" name="sender" value="{{ user.username }}">
-    <input type="hidden" name="receiver" value="{{ room.slug }}">
+    <input type="hidden" name="room" value="{{ room.slug }}">
+    {% if room.staff == request.user.username %}
+    <input type="hidden" name="receiver" value="{{ room.client }}">
+    {% else %}
+    <input type="hidden" name="receiver" value="{{ room.staff }}">
+    {% endif %}
     <input type="hidden" name="date">
     <div class="col-8"><input class="w-100 chat" placeholder="Type your message" type="text" name="message"></div>
     <div class="col-4"><input type="submit" class="btn btn-secondary chat-button " value="send"></div>
