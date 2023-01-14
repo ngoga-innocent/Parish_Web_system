@@ -8,7 +8,8 @@ class Messages(admin.ModelAdmin):
 
 
 class Rooms(admin.ModelAdmin):
-    list_display = ("id", "name", "slug", "staff", "client")
+    list_display = ("id", "name", "slug", "staff", "client",
+                    "staff_pending", "client_pending")
 
 
 admin.site.register(Messaging, Messages)

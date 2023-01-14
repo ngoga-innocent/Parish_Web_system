@@ -9,29 +9,18 @@ from django.db.models import Q
 @login_required
 def Home(request):
     staffs = User.objects.filter(is_staff=True).exclude(id=request.user.id)
-
+    unread = Messaging.objects.filter(
+        receiver=request.user.username, status='1').count()
     new_messages = Room.objects.filter(
-        staff=request.user.username)
-    if request.user.is_staff:
-        for new_message in new_messages:
-            pending = Messaging.objects.filter(
-                room=new_message.slug, status=1)
-            context = {
-                'pending': pending,
-                'staffs': staffs,
-                'new_messages': new_messages
+        Q(client=request.user.username) | Q(staff=request.user.username))
+    print(new_messages)
+    context = {
+        'unread': unread,
+        'staffs': staffs,
+        'new_messages': new_messages
 
-            }
-    else:
-        for staff in staffs:
-            pending = Messaging.objects.filter(
-                receiver=staff.username, sender=request.user.username, status=1)
-            context = {
-                'pending': pending,
-                'staffs': staffs,
-                'new_messages': new_messages
+    }
 
-            }
     return render(request, 'homechat.html', context)
 
 
@@ -40,6 +29,7 @@ def StaffCheck(request, id):
     staffs = User.objects.filter(is_staff=True).exclude(id=request.user.id)
     new_messages = Room.objects.filter(
         staff=request.user.username)
+
     staff = User.objects.get(id=id)
     room = Room.objects.filter(
         staff=staff.username, client=request.user.username)
@@ -90,7 +80,16 @@ def ChatRoom(request, id):
         slug = str(name) + str(staff)
         messages = Messaging.objects.filter(room=slug)
         message = Messaging.objects.filter(room=slug).update(status='2')
-
+        client_pending = rooms.client_pending
+        staff_pending = rooms.staff_pending
+        if rooms.staff == request.user.username:
+            staff_pending = 0
+            room = Room.objects.filter(id=id).update(
+                staff_pending=staff_pending)
+        else:
+            client_pending = 0
+            room = Room.objects.filter(id=id).update(
+                client_pending=client_pending)
         if request.method == "POST":
             sender = request.POST['sender']
             room = request.POST['room']
@@ -99,7 +98,16 @@ def ChatRoom(request, id):
 
             new_message = Messaging.objects.create(
                 sender=sender, room=room, data=data, receiver=receiver)
-            new_message.save()
+            if rooms.staff == request.user.username:
+                client_pending = client_pending+1
+                room = Room.objects.filter(id=id).update(
+                    client_pending=client_pending)
+                new_message.save()
+            else:
+                staff_pending = staff_pending+1
+                room = Room.objects.filter(id=id).update(
+                    staff_pending=staff_pending)
+                new_message.save()
             context = {
                 'new_messages': new_messages,
                 'staffs': staffs,

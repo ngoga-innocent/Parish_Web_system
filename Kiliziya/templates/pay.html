@@ -1,0 +1,12 @@
+{% extends 'chat_dashboard.html' %}
+{% block content %}
+
+
+<form action="{% url 'cashin' %}" style="width:300px;margin-top: 10px;" method="post">
+    {% csrf_token %}
+    <input type="hidden" class="form-control" name="access_token" value="{{ access }}">
+    <input type="text" class="form-control "name="number" placeholder="enter your phone number">
+    <input type="text" name="amount" class="form-control" placeholder="enter amount">
+    <input type="submit" value="submit" class="btn btn-primary">
+</form>
+{% endblock %}

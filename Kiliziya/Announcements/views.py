@@ -1,16 +1,25 @@
 from django.shortcuts import render
 from .models import Announcements
 from .createann import AnnouncementsForm
+from Ubukarani.models import Ibyasabwe
+from Messaging.models import Messaging
 
 # Create your views here.
 
 
 def CreateAnnouncements(request):
+    unread = Messaging.objects.filter(
+        receiver=request.user.username, status='1').count()
+    pending = Ibyasabwe.objects.filter(status=1)
     form = AnnouncementsForm(request.POST, request.FILES)
     if form.is_valid():
         form.save()
-
-    return render(request, 'create.html', {'form': form})
+    context = {
+        'form': form,
+        'unread': unread,
+        'pending': pending
+    }
+    return render(request, 'create.html', context)
 
 
 def Announcement(request):

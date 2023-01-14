@@ -12,5 +12,6 @@ urlpatterns = [
     path('Event/', include('Events.urls')),
     path('User/', include('User.urls')),
     path('staff/', include('Staff.urls')),
+    path('pay/', include('Payment.urls')),
     path('chat/', include('Messaging.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

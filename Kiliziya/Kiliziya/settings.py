@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-gj$_&*c4onw6i4*gu8l31+z=+4)oe7ew$lvs6_v#by6hbn1i^7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '079d-2c0f-eb68-618-e600-8509-c33-8e94-3319.eu.ngrok.io',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'Events',
     'Messaging',
     'Staff',
+    'Payment'
 
 
 ]

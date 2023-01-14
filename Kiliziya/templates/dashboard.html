@@ -42,8 +42,8 @@
           <ul class="dropdown-menu  text-center">
               <div class="list-group">
                 <h6 class="text-center">Announcements options</h6>
-              <li class="list-group-item"><a href="#"> All Announcements</a></li>
-              <li class="list-group-item"><a href="#">Add new Announcement</a></li>
+              <li class="list-group-item"><a href="{% url 'announc' %}"> All Announcements</a></li>
+              <li class="list-group-item"><a href="{% url 'createannounc' %}">Add new Announcement</a></li>
               
             </div>  
             </ul>
@@ -62,7 +62,7 @@
           </li>
           <li><a href="{% url 'ubukarani' %}"><i class="fa fa-archive me-2"></i>Ubukarani</a></li>
           <li><a href="{% url 'chat' %}"><i class="fa fa-comment me-2"></i>Messages
-          <span class="badge bg-danger tag-pill pl-2" style="margin-left: 5px; position: relative;border-radius: 50%;">20</span>
+          <span class="badge bg-danger tag-pill pl-2" style="margin-left: 5px; position: relative;border-radius: 50%;">{{ unread }}</span>
         </a>
       </li>
           <li><a href=""><i class="fa fa-user-circle-o me-2"></i>My Account</a></li>

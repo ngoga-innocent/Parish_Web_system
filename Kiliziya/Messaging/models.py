@@ -8,6 +8,8 @@ class Room(models.Model):
     slug = models.CharField(max_length=1000)
     staff = models.CharField(max_length=10000, null=True)
     client = models.CharField(max_length=10000, null=True)
+    staff_pending = models.IntegerField(null=True, default=0)
+    client_pending = models.IntegerField(null=True, default=0)
 
 
 class Messaging(models.Model):
