@@ -20,4 +20,5 @@ urlpatterns = [
 
     path('', views.Home, name='events'),
     path('new_event', views.NewEvent, name='newevent'),
+    path('detail <int:id>', views.event_detail, name='event_detail')
 ]

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--Hero Header-->
+<div class="p-5 text-center bg-image rounded-3" style="
+    background-image: url('https://i0.wp.com/www.topafricanews.com/wp-content/uploads/2021/10/IMG_9498.jpg?w=1000&ssl=1');
+    height: 400px;
+    background-size:cover;
+    background-repeat: no-repeat;
+  ">
+  <!-- <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);"> -->
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="text-white">
+        <h1 class="mb-3 text-primary">Contact Us </h1>
+        <h4 class="mb-3 text-primary">KIMIHURURA PARISH WEB SYSTEM</h4>
+        <a class="btn btn-outline-light btn-lg btn-primary" href="{% url 'chat' %}" role="button">To Chat</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--map-->
+<div class="fluid-container p-5">
+    <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.5129735818055!2d30.0774861140454!3d-1.947825798579935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca691b49e7517%3A0x9b59f77dbec6f41a!2sInstitut%20de%20Formation%20Apostolique%20de%20Kimihurura%20-%20IFAK!5e0!3m2!1sen!2srw!4v1673776668724!5m2!1sen!2srw" width="100%" height="450" style="border:0;" allowfullscreen="True" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<div class="contact">
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-4">
+            <div class="box container-fluid" style="color:black;justify-content:center;align-items:center;margin-left:3px">
+                <h4 class="text-center">Location</h4>
+                <h5 class="text-center">Address</h5>
+                <p class="text-center">41 KN 14 Ave, Kigali</p>
+                <h5 class="text-center">Phone</h5>
+                <p class="text-center font-weight-normal">+250722647532</p>
+                <h5 class="text-center">Email</h5>
+                <p class="text-center font-weight-normal">kimihururaparish@gmail.com</p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-8 p-2 mr-3  bg-dark text-white">
+            <h6 class="text-center">Contact Us</h6>
+            {% for message in messages %}
+             <h6 class="alert alert-success">{{ message }}</h6>
+            {% endfor  %}
+            <form action="" method="post" class="register1">
+                {% csrf_token %}
+                <label for="">Full name</label>
+                <input type="text" name="fullname" class="form-control">
+                <label for="">Email</label>
+                <input type="text" name="email" class="form-control">
+                <label for="">Message</label>
+                <textarea name="message" class="form-control" ></textarea>
+                <!-- <input type="textarea" name="message" class="form-control"> -->
+                <button type="submit" value="Submit" class="btn btn-danger form-control" style="margin-top:5px;">Submit</button>
+
+            </form>
+        </div>
+    </div>
+    <!-- <div class="chatbtn">
+        <h6 class="text-center">Chat with one of our staff Member</h6>
+
+    </div> -->
+    <div class="jumbotron ">
+        <div class="container">
+            <h1 class="display-4">Chat with one of our Staff Member</h1>
+            <p class="lead">Get your Response instantly</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'chat' %}" role="button">ToChat</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

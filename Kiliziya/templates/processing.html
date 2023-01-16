@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for message in messages %}
+<h6 class="alert alert-warning">{{ message }}</h6>
+{% endfor %}
+<div class="jumbotron container-fluid">
+  <h1 class="display-4">Hello,{{ request.user.username }}</h1>
+  <p class="lead">check your phone to confirm payment....</p>
+  <hr class="my-4">
+  
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">back to home</a>
+  </p>
+</div>
+{% endblock%}

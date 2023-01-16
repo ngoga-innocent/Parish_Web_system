@@ -26,16 +26,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <nav class="navbar navbar-expand-lg  container-fluid text-white" style="background-color: navy-blue;">
   <a class="navbar-brand" href="#"><img src="{% static 'image/logop.jpg' %}" class="img-fluid" style="height: 40px; width: 40px;margin-right: 1rem;" alt="">KIMIHURURA PARISH</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon text-white"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Calender</a>
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="{% url 'events' %}">Events</a>
       </li>
@@ -50,7 +48,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <a class="nav-link" href="/ubukarani">Ubukarani</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'chat' %}">Sobanuza</a>
+        <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
       </li>
       
        
@@ -152,8 +150,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Grid column -->
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-secondary"></i>Parroise Cathedral st Michel
+          <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(194, 210, 216);">
+           Parroise Cathedral st Michel
           </h6>
           <p>
             Christian Catholic church Arhcdiocese of Kigali located in center of Kigali city
@@ -164,14 +162,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Grid column -->
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <h6 class="text-uppercase fw-bold mb-4 text-white"style="color: rgb(194, 210, 216);">
             Services
           </h6>
           <p>
-            <a href="#!" class="text-reset">ubukarani</a>
+            <a href="{% url 'ubukarani' %}" class="text-reset">ubukarani</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Donation</a>
+            <a href="{% url 'pay' %}" class="text-reset">Donation</a>
           </p>
           <p>
             <a href="#!" class="text-reset">Activities</a>
@@ -185,7 +183,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
+          <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(194, 210, 216);">
             Useful links
           </h6>
           <p>
@@ -195,7 +193,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <a href="#!" class="text-reset">Announcement</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Contact us</a>
+            <a href="{% url 'contact' %}" class="text-reset">Contact us</a>
           </p>
           <p>
             <a href="#!" class="text-reset">Help</a>
@@ -206,14 +204,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3 text-secondary"></i> Kigali, Rwanda</p>
+          <h6 class="text-uppercase fw-bold mb-4"style="color: rgb(194, 210, 216);" >Contact</h6>
+          <p> Kigali, Rwanda</p>
           <p>
-            <i class="fas fa-envelope me-3 text-secondary"></i>
+            
             ngogainnocent1@gmail.com
           </p>
-          <p><i class="fas fa-phone me-3 text-secondary"></i> + 250 7822 14 360</p>
-          <p><i class="fas fa-print me-3 text-secondary"></i> + 250 7265 84 581</p>
+          <p> + 250 7822 14 360</p>
+          <p> + 250 7265 84 581</p>
         </div>
         <!-- Grid column -->
       </div>

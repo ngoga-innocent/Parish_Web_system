@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 
 import requests
 import json
+import time
 
 
 def Authorization(request):
@@ -21,63 +23,31 @@ def Authorization(request):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     if response.ok:
+        if request.method == 'POST':
+            amounts = request.POST['amount']
+            number = request.POST['number']
+            amount = float(amounts)
+            json_data = json.loads(response.text)
+            access_token = json_data['access']
 
-        json_data = json.loads(response.text)
-        access_token = json_data['access']
+            url = "https://payments.paypack.rw/api/transactions/cashin"
 
-        url = "https://payments.paypack.rw/api/transactions/cashin"
+            payload = json.dumps({
+                "amount": amount,
+                "number": number
+            })
+            headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': f'Bearer {access_token}'
+            }
 
-        payload = json.dumps({
-            "amount": 1000,
-            "number": '0726584581'
-        })
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': f'Bearer {access_token}'
-        }
-
-        response = requests.request("POST", url, headers=headers, data=payload)
-        reference = json.loads(response.text)
-        # ref = reference['ref']
-        print(reference)
-
-        # if response.ok:
-        #     url = "https://payments.paypack.rw/api/transactions/find/"
-        #     # url = url+f'Bearer{referencekey}'
-        #     payload = {}
-        #     headers = {'Authorization': f'Bearer {access_token}'}
-
-        #     response = requests.request(
-        #         "GET", url, headers=headers, data=payload)
-
-        #     print(response.text)
-        # # access = json_data['access']
-        return render(request, 'payed.html')
-
-
-# def Pay(request):
-#     if request.method == 'POST':
-#         amount = request.POST['amount']
-#         number = request.POST['number']
-#         access = request.POST['access_token']
-#         accesses = json.loads(access)
-#         access_token = accesses['access_token']
-#         url = "https://payments.paypack.rw/api/transactions/cashin"
-
-#         data = json.dumps({
-#             "amount": amount,
-#             "number": number
-#         })
-#         headers = {
-#             'Content-Type': 'application/json',
-#             'Accept': 'application/json',
-#             'Authorization': 'Bearer{access_token}'
-#         }
-
-#         response = requests.request("POST", url, headers=headers, json=data)
-
-#         print(response.text)
-#         return render(request, 'home.html')
-#     else:
-#         return render(request, 'pay.html')
+            response = requests.request(
+                "POST", url, headers=headers, data=payload)
+            reference = json.loads(response.text)
+            # ref = reference['ref']
+            print(reference)
+            messages.info(request, 'Your transaction is being processed')
+            return render(request, 'processing.html')
+        else:
+            return render(request, 'pay.html')

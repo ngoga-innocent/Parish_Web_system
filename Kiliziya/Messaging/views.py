@@ -13,7 +13,7 @@ def Home(request):
         receiver=request.user.username, status='1').count()
     new_messages = Room.objects.filter(
         Q(client=request.user.username) | Q(staff=request.user.username))
-    print(new_messages)
+    # print(new_messages)
     context = {
         'unread': unread,
         'staffs': staffs,

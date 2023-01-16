@@ -25,14 +25,14 @@
   <tbody>
     {% for icyemezo in icyangombwa %}
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{  forloop.counter  }}</th>
       <td>{{ icyemezo.prenom  }} {{ icyemezo.Nom }}</td>
       {% if status %}
       <td><a href="{% url 'download'  icyemezo.id %}" class="btn btn-danger">{{ status }}</a></td>
       <!-- <td class="text-warning">{{ status }}</td> -->
       {% else %}
       <td><a href="./icyangombwa/{{ icyemezo.id }}" class="btn btn-danger">Gisabe</a></td>
-      <td class="text-warning">{{ status }}</td>
+      <!-- <td class="text-warning">{{ status }}</td> -->
       {% endif %}
     </tr>
     {% endfor %}

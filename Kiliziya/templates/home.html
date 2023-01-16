@@ -11,7 +11,7 @@
   <div class="carousel-inner">
     <div class="carousel-item carousel-image active">
       <img class="d-block w-100" style="height: 100%;" src="{%static 'image/kimihurura1.jpg' %}" alt="First slide">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="d-none d-md-block">
     <h5> MARIYA UTABARA ABAKRISTU</h5>
     <p>Udusabire</p>
   </div>
@@ -32,16 +32,15 @@
   </a>
 </div>
 <!--End Carousell-->
-<!-- <header>
+<header>
   <div class="intro">
-    <img class="img-fluid w-100" style="height:80vh" src="{%static 'image/parish.jpg' %}"  alt="Parish Image">
-    <div class="head">
-      <h4 class="display-3 font-weight-bold">Parroise Cathedrale St Michel</h4>
-      <hr class="w-30">
-
-    </div>
+    <marquee behavior="repeat" direction="left" style="background-color: rgb(124, 218, 108) ;margin: 4px;">
+      <h6>Our Missions</h6>
+      <p>1.To proclaim the Good News of the Kingdom. 2.To teach, baptize and nurture new believers.
+        3.To respond to human need by loving service. 4.To seek to transform unjust structures of society. 5.To strive to safeguard the integrity of creation and sustain and renew the life of the earth. </p>
+    </marquee>
   </div>
-</header> -->
+</header>
 <section>
   <div class="featured">
     <!--Owl Carousel-->
@@ -49,12 +48,12 @@
   <h4>Upcoming Events</h4>
 </div>
 <div class="owl-carousel owl-theme">
-  {% for announcement in announcents %}
+  {% for event in events %}
     <div class="item">
       <div class="one ">
-        <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+        <img src="{{ event.thumb.url }}" class="img-fluid" alt="">
         <div class="text w-75 h-25 p-4">
-          <p>{{ announcement.title }}</p>
+          <p>{{ event.title }}</p>
           
         </div>
       </div>

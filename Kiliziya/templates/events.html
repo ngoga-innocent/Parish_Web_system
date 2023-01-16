@@ -50,8 +50,8 @@
 </div>
 <div class="row">
   
-    {% for event in events %}
-    <div class="col-lg-2 col-md-3 col-4">
+    {% for event in events|slice:":12" %}
+    <!-- <div class="col-lg-2 col-md-3 col-4">
     <div class="calendar" style="height: 50%; border: 2px;border-style: solid;">
           {{ event.date|date:'l' }}
     <img src="{{ event.thumb.url }}" style="height:30%" class="img-fluid w-10 h-10" alt="">
@@ -60,6 +60,15 @@
             </div>
           
         </div>
+    </div> -->
+    <div class="card" style="width: 18rem; margin: 1px;">
+        <div class="card-body">
+          <h5 class="card-title"><p>{{ event.title }}</p></h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ event.date|date:'l' }}| {{ event.date }}</h6>
+      <p class="card-text">{{ event.description|slice:20 }}</p>
+          <a href="{% url 'event_detail' event.id %}" class="card-link">read More</a>
+          <a href="{% url 'home' %}" class="card-link">home</a>
+        </div>
     </div>
 
         
@@ -67,11 +76,11 @@
       {% endfor %}
     
   </div>
-
+<!-- 
 <div class="button">
   
 <button type="button" class="btn btn-primary btn-lg btn-block"><a href="{url 'missa'}">More events</a></button>
-</div>
+</div> -->
 
 
 <!--End Owl carousel -->
@@ -87,7 +96,7 @@
         <div class="col-lg-6 col-md-6 col-6">
           <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
           <p class="font-weight-bold" style="font-size: 17px;font-weight: bold;">{{ announcement.title }}</p>
-          <p>{{ announcement.description }}</p>
+          <p>{{ announcement.description|slice:40 }}</p>
           <p><a href="announcements/{{ announcement.id }}">Read more</a></p>
         </div>
         {% endfor %}

@@ -26,10 +26,7 @@ SECRET_KEY = 'django-insecure-gj$_&*c4onw6i4*gu8l31+z=+4)oe7ew$lvs6_v#by6hbn1i^7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '079d-2c0f-eb68-618-e600-8509-c33-8e94-3319.eu.ngrok.io',
-    '127.0.0.1'
-    ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -146,3 +143,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '/Media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/User/'
 LOGIN_REDIRECT_URL = '/'
+# EMAIL_SETTING
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = 'bienvenueinnocent2000@gmail.com'
+EMAIL_HOST_PASS = 'gffuchazijmyhqsx'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+
+# AUTHENTICATION_BACKENDS = (
+
+#     'django.contrib.auth.backends.ModelBackend',
+
+#     'allauth.account.auth_backends.AuthenticationBackend',
+
+# )

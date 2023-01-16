@@ -19,4 +19,6 @@ from . import views
 urlpatterns = [
 
     path('', views.Home, name='home'),
+    path('contact', views.sendmail, name='contact'),
+    path('process', views.Afterpay, name='afterpay')
 ]

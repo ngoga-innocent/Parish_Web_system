@@ -1,12 +1,21 @@
-{% extends 'chat_dashboard.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
-
-<form action="{% url 'cashin' %}" style="width:300px;margin-top: 10px;" method="post">
+<div class="jumbotron container-fluid">
+  <h1 class="display-4">Donation Page</h1>
+  <p class="lead">Hello {{ request.user.username }}, 
+    <p>thanks for your donation! please fill the form to provide donation</p>
+ </p>
+  <hr class="my-4">
+  
+  
+<form action="{% url 'pay' %}" class="form-group" style="width:300px;margin-top: 10px; margin-left: 20px;" method="post">
     {% csrf_token %}
     <input type="hidden" class="form-control" name="access_token" value="{{ access }}">
+    <label for="">Phone number </label>
     <input type="text" class="form-control "name="number" placeholder="enter your phone number">
-    <input type="text" name="amount" class="form-control" placeholder="enter amount">
+    <label for="">Amount</label>
+    <input type="number" name="amount" class="form-control" placeholder="enter amount">
     <input type="submit" value="submit" class="btn btn-primary">
 </form>
 {% endblock %}

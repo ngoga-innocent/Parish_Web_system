@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .bapteme import RawKwiyandikisha
 from .models import Icyangombwa, Ibyasabwe
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # generating pdf files import
@@ -13,10 +14,12 @@ from .utils import render_to_pdf
 # Create your views here.
 
 
+@login_required
 def Home(request):
     return render(request, 'Ubukarani.html')
 
 
+@login_required
 def Register(request):
 
     form = RawKwiyandikisha()
@@ -33,6 +36,7 @@ def Register(request):
     return render(request, 'icyangombwa.html', context)
 
 
+@login_required
 def icyemezo(request):
     if request.method == "POST":
         searched = request.POST['search']
@@ -45,7 +49,7 @@ def icyemezo(request):
                 if icyasabwe:
                     for icya in icyasabwe:
                         status = icya.status
-                        if status == 1:
+                        if status == '1'                                                                   :
                             status = "Pending"
                         else:
                             status = 'Approved'
@@ -68,6 +72,7 @@ def icyemezo(request):
         return render(request, 'ibyangombwa.html')
 
 
+@login_required
 def icyemezo_detail(request, id):
     if request.method == "POST":
         amazina = request.POST['amazina']
@@ -120,6 +125,7 @@ def Generatepdf(request, id):
         filename = "Ifishi_%s.pdf" % (ifishi.prenom)
         content = "inline; filename='%s'" % (filename)
         download = request.GET.get("download")
+        Ibyasabwe.objects.filter(id=id).update(status=1)
         return response
 
         # if download:
