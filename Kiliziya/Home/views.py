@@ -11,9 +11,11 @@ from Events.models import Event
 
 def Home(request):
     events = Event.objects.all()
-    announcements = Announcements.objects.all()
+    announcements = Announcements.objects.all().order_by('-id')[:4]
+    announcementss = Announcements.objects.all().order_by('id')[:4]
 
     context = {
+        'announcementss': announcementss,
         'events': events,
         'announcents': announcements
     }
@@ -37,3 +39,7 @@ def sendmail(request):
 def Afterpay(request):
     time.sleep(60)
     return redirect(request, 'home.html')
+
+
+def About(request):
+    return render(request, 'about.html')

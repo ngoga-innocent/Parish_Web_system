@@ -30,20 +30,26 @@ def Authorization(request):
             json_data = json.loads(response.text)
             access_token = json_data['access']
 
-            url = "https://payments.paypack.rw/api/transactions/cashin"
+            # url = "https://payments.paypack.rw/api/transactions/cashin"
+            url="https://opay-api.oltranz.com/opay/paymentrequest"
 
-            payload = json.dumps({
-                "amount": amount,
-                "number": number
-            })
-            headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': f'Bearer {access_token}'
-            }
+            # payload = json.dumps({
+            #     "amount": amount,
+            #     "telephoneNumber": number,
+            #     "organizationId" : "2ccdfabb-d87e-487b-b922-22c43e0001d5"
+            # })
+            payload={
+                    "telephoneNumber" : number,
+                    "amount" : amount,
+                    "organizationId" : "2ccdfabb-d87e-487b-b922-22c43e0001d5"}
+            # headers = {
+            #     'Content-Type': 'application/json',
+            #     'Accept': 'application/json',
+            #     'Authorization': f'Bearer {access_token}'
+            # }
 
             response = requests.request(
-                "POST", url, headers=headers, data=payload)
+                "POST", url,data=payload)
             reference = json.loads(response.text)
             # ref = reference['ref']
             print(reference)

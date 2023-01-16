@@ -71,7 +71,7 @@ transform:translate(-50%,-50%);
     border-bottom: 2px solid;
 }
 .navbar .right{
-  margin-left: 20%;
+  margin-left: 10%;
 }
 .nav-link{
     color: white;
@@ -147,8 +147,8 @@ a{
 }
 .sidebar{
    width: 345px;
-   height:100%;
-   position: fixed;
+   /* height:100%; */
+   position: absolute;
    background: var(--main-color);
 }
 .sidebar-menu li{

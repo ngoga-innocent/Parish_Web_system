@@ -50,6 +50,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
       <li class="nav-item">
         <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'about_us' %}">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-success" href="{% url 'pay' %}">Donate</a>
+      </li>
       
        
      
@@ -151,7 +157,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4" style="color: rgb(194, 210, 216);">
-           Parroise Cathedral st Michel
+           Kimihurura Parish web system
           </h6>
           <p>
             Christian Catholic church Arhcdiocese of Kigali located in center of Kigali city
@@ -171,11 +177,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           <p>
             <a href="{% url 'pay' %}" class="text-reset">Donation</a>
           </p>
+         
           <p>
-            <a href="#!" class="text-reset">Activities</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Event</a>
+            <a href="{% url 'events' %}" class="text-reset">Event</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -187,16 +191,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Calendar</a>
+            <a href="{% url 'missa' %}" class="text-reset">Holy Mass</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Announcement</a>
+            <a href="{% url 'announc' %}" class="text-reset">Announcement</a>
           </p>
           <p>
             <a href="{% url 'contact' %}" class="text-reset">Contact us</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="{% url 'chat' %}" class="text-reset">Help</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -208,7 +212,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
           <p> Kigali, Rwanda</p>
           <p>
             
-            ngogainnocent1@gmail.com
+            parroissekimihurura@gmail.com
           </p>
           <p> + 250 7822 14 360</p>
           <p> + 250 7265 84 581</p>
@@ -222,7 +226,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-    © 2022 Copyright:Final Year Project
+    © 2023 Copyright:Kimihurura Parish web system
     
   </div>
   <!-- Copyright -->

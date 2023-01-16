@@ -20,5 +20,6 @@ urlpatterns = [
 
     path('', views.Home, name='home'),
     path('contact', views.sendmail, name='contact'),
-    path('process', views.Afterpay, name='afterpay')
+    path('process', views.Afterpay, name='afterpay'),
+    path('about', views.About, name='about_us'),
 ]

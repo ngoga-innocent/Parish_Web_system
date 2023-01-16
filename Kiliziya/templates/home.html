@@ -95,13 +95,13 @@
       </div>
       <div class="sidebar2">
         <div class="row">
-          {% for announcement in announcents %}
+          {% for announcements in announcementss %}
           <div class="col-lg-4 col-md-4 col-4">
-            <img src="{{ announcement.thumb.url }}" class="img-fluid" alt="">
+            <img src="{{ announcements.thumb.url }}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 col-md-8 col-8">
-             <p>{{ announcement.title }}</p>
-             <p><a href="{% url 'announcements_detail' announcement.id %}">Read More</a></p>
+             <p>{{ announcements.title }}</p>
+             <p><a href="{% url 'announcements_detail' announcements.id %}">Read More</a></p>
           </div>
           {% endfor %}
         </div>
